@@ -8,16 +8,13 @@ def mask_account_card(info: str) -> str:
     if not info:
         return ""
 
-    # Разделяем входную строку на слова
     parts = info.split()
-    number = parts[-1]  # Последнее слово — это сам номер
-    name = " ".join(parts[:-1])  # Всё остальное — название (например, Visa Platinum)
+    number = parts[-1]
+    name = " ".join(parts[:-1])
 
     if "Счет" in name:
-        # Используем функцию из модуля masks
         return f"{name} {get_mask_account(number)}"
     else:
-        # Используем функцию из модуля masks
         return f"{name} {get_mask_card_number(number)}"
 
 
@@ -31,7 +28,6 @@ def get_date(date_str: str) -> str:
     return parsed_date.strftime("%d.%m.%Y")
 
 
-# Блок проверки работы кода (покажет результат в консоли)
 if __name__ == "__main__":
     print(mask_account_card("Visa Platinum 7000792289606361"))
     print(mask_account_card("Maestro 7000792289606361"))

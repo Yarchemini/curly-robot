@@ -3,7 +3,6 @@ def get_mask_card_number(card_number: str) -> str:
     if not card_number.isdigit() or len(card_number) != 16:
         return "Неверный формат карты"
 
-    # Формат маски: XXXX XX** **** XXXX
     part1 = card_number[:4]
     part2 = card_number[4:6]
     part4 = card_number[12:]
@@ -16,5 +15,4 @@ def get_mask_account(account_number: str) -> str:
     if not account_number.isdigit() or len(account_number) < 4:
         return "Неверный формат счета"
 
-    # Маскируем так, чтобы были видны только последние 4 цифры, перед ними две звездочки
     return f"**{account_number[-4:]}"
