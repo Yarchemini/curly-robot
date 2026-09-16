@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -21,13 +23,12 @@ def mask_account_card(info: str) -> str:
 
 def get_date(date_str: str) -> str:
     """Конвертирует строку даты из формата ISO в формат ДД.ММ.ГГГГ."""
-    if not date_str or len(date_str) < 10:
+    if not date_str:
         return ""
 
-    clean_date = date_str[:10]  # Берем только "2024-03-11"
-    year, month, day = clean_date.split("-")
+    parsed_date = datetime.fromisoformat(date_str)
 
-    return f"{day}.{month}.{year}"
+    return parsed_date.strftime("%d.%m.%Y")
 
 
 # Блок проверки работы кода (покажет результат в консоли)
