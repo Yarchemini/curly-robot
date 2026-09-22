@@ -40,6 +40,7 @@ def operations_same_date() -> list[dict]:
 def empty_operations_list() -> list[dict]:
     """Пустой список операций."""
     return []
+ feature/generators
 
 
 @pytest.fixture
@@ -52,3 +53,5 @@ def transactions_with_currency() -> list[dict]:
         {"id": 4, "operationAmount": {"currency": {"code": "USD"}}, "description": "Перевод с карты на карту"},
         {"id": 5, "operationAmount": {"currency": {"code": "RUB"}}, "description": "Перевод организации"},
     ]
+=======
+ main
