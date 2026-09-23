@@ -185,4 +185,31 @@ poetry run mypy src
 poetry run isort src
 poetry run black src
 ```
-main
+main 
+
+## Модуль generators
+
+Модуль `src/generators.py` предназначен для эффективной фильтрации и последовательной обработки больших массивов транзакций с использованием встроенных возможностей генераторов Python.
+
+### Реализованный функционал:
+* **filter_by_currency(transactions, currency_code)**: Принимает список словарей транзакций и возвращает итератор, выдающий только операции с указанной валютой (например, "USD" или "RUB").
+* **transaction_descriptions(transactions)**: Принимает список транзакций и поочередно генерирует текстовое описание (`description`) для каждой операции.
+* **card_number_generator(start, stop)**: Генерирует номера банковских карт в строго заданном числовом диапазоне. Номера автоматически форматируются по шаблону `XXXX XXXX XXXX XXXX`.
+
+### Примеры использования:
+```python
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+
+# Фильтрация транзакций по USD
+usd_transactions = filter_by_currency(transactions, "USD")
+print(next(usd_transactions))
+
+# Поочередное получение описаний
+descriptions = transaction_descriptions(transactions)
+print(next(descriptions))
+
+# Генерация номеров карт от 1 до 5
+for card_number in card_number_generator(1, 5):
+    print(card_number)
+```
+
